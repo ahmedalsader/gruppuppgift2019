@@ -2,10 +2,61 @@
 //
 
 #include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <cctype>
+#include <ctype.h>
+
+//I'm not sure which includes are really necessary
+
+using namespace std;
+//using std::cout;
+//using std::cin;
+//using std::endl;
+//using std::string;
+
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    string temp;
+    string s;
+    cout << "Enter a word : " << endl;
+    cin >> s;
+    int n;
+    cout << "Enter an encryption key : " << endl;
+    cin >> n;
+
+    std::for_each(s.begin(), s.end(), [](char & c)
+    {
+        c = ::toupper(c);
+    });
+
+    cout << s << endl;
+
+    for(int i = 0; i < s.length(); i++)
+    {
+        int j = (int)s[i];
+
+        if(j + n < 90)
+        {
+            j += n;
+            temp += (char)j;
+        }
+        else
+        {
+            j = j - 26 + n;
+            temp += (char)j;
+        }
+        
+    }
+
+    cout << temp << endl;
+
+
+    
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
